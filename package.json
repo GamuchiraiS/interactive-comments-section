@@ -3,13 +3,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass:watch": "sass --source-map -w    sass/style.scss css/style.css",
     "sass:debug": "sass --source-map       sass/style.scss css/style.css",
-    "sass:release": "sass --style=compressed sass/style.scss css/style.css"
+    "sass:release": "sass --style=compressed sass/style.scss css/style.css",
+    "dev": "vite",
+    "build": "vite build"
   },
   "author": "interactive",
   "license": "ISC",
   "devDependencies": {
     "sass": "^1.23.0",
-    "sass-loader": "^13.3.1"
+    "sass-loader": "^13.3.1",
+    "axios": "^1.1.2",
+    "laravel-vite-plugin": "^0.6.0",
+    "lodash": "^4.17.19",
+    "postcss": "^8.1.14",
+    "vite": "^3.0.0"
   }
 }
 
