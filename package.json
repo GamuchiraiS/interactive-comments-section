@@ -2,9 +2,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass:watch": "sass --source-map -w    sass/style.scss css/style.css",
-    "sass:debug": "sass --source-map       sass/style.scss css/style.css",
-    "sass:release": "sass --style=compressed sass/style.scss css/style.css",
+    "sass:watch": "sass --source-map -w    resources/sass/style.scss resources/css/style.css",
+    "sass:debug": "sass --source-map       resources/sass/style.scss resources/css/style.css",
+    "sass:release": "sass --style=compressed resources/sass/style.scss resources/css/style.css",
     "dev": "vite",
     "build": "vite build"
   },

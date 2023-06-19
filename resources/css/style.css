@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.card {
+  padding: 2em;
+  background-color: gainsboro;
+}
+.card + .card {
+  margin-top: 1em;
+}
+
+/*# sourceMappingURL=style.css.map */
