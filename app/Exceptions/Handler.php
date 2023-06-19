@@ -30,6 +30,8 @@ class Handler extends ExceptionHandler
      *
      * @var array<int, string>
      */
+
+    //dd($exception->getMessage());
     protected $dontFlash = [
         'current_password',
         'password',
