@@ -1,4 +1,5 @@
 {
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass:watch": "sass --source-map -w    sass/style.scss css/style.css",
