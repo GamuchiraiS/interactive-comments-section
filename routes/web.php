@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+//Route::get('/', [WelcomeController::class, 'index']);
 
-Route::get('/home', function () {
-    return view('home', ['name' => 'Amy']);
+Route::get('/', function () {
+    return view('messages.index');
 });
+
+Route::resource('messages', MessageController::class)
+    ->only(['index', 'store']);
