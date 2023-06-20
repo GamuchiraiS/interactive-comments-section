@@ -3,27 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|View|\Illuminate\Http\Response
      */
     public function index()
     {
-        //
-        return view('messages.index', [
-            'messages' => Message::with('user')->latest()->get(),
+        //get messages
+        $messages = Message::all();
+        return view('messages.index')->with('messages', $messages);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Application|\Illuminate\Contracts\View\Factory|View|\Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //validate data
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
         ]);
+        $request->user()->messages()->create($validated);
+        return redirect(route('messages.index'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -31,28 +49,10 @@ class MessageController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $validated = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
-
-        $request->user()->messages()->create($validated);
-
-        return redirect(route('messages.index'));
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|View|\Illuminate\Http\Response
      */
     public function show(Message $message)
     {
