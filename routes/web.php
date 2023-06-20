@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::resource('messages', MessageController::class)
     ->only(['index', 'store']);
 
+//Added by Breeze
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

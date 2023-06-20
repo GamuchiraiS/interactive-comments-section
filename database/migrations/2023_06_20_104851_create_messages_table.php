@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('message');
-            $table->integer('user_id')->constrained();
+            //$table->integer('user_id');
         });
     }
 

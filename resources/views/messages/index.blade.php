@@ -28,21 +28,20 @@
         $messages = App\Models\Message::all();
     @endphp
 
-    <div class="card">
-        <p> {{ $messages }}</p>
-    </div>
+{{--    <div class="card">--}}
+{{--        <p> {{ $messages }}</p>--}}
+{{--    </div>--}}
 
     @foreach ($messages as $message)
-
-            <div class="flex-1">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <span class="text-gray-800">{{ $message->user->name }}</span>
-                        <small class="ml-2 text-sm text-gray-600">{{ $message->created_at->format('j M Y, g:i a') }}</small>
-                    </div>
+        <div class="flex-1">
+            <div class="flex justify-between items-center">
+                <div>
+                    <span class="text-gray-800">{{ $message->user }}</span>
+                    <small class="ml-2 text-sm text-gray-600">{{ $message->created_at->format('j M Y, g:i a') }}</small>
                 </div>
-                <p class="mt-4 text-lg text-gray-900">{{ $message->message }}</p>
             </div>
+            <p class="mt-4 text-lg text-gray-900">{{ $message->message }}</p>
+        </div>
     @endforeach
 
 </main>

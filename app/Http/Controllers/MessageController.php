@@ -19,7 +19,7 @@ class MessageController extends Controller
     {
         //get messages
         $messages = Message::all();
-        return view('messages.index')->with('messages', $messages);
+        return view('messages.index', ['messages'=> $messages]);
     }
 
     /**
@@ -31,12 +31,16 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //validate data
-        $validated = $request->validate([
+        $request->validate([
             'message' => 'required|string|max:255',
         ]);
-        // dd($request->user());
-        $request->user()->messages()->create($validated);
-        return redirect(route('messages.index'));
+
+        $message = Message::create([
+            'message'    => $request->message
+        ]);
+        //dd($request);
+        //$request->user->messages()->created->($validated);
+        return redirect('/');
     }
 
     /**
