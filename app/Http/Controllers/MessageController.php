@@ -34,6 +34,7 @@ class MessageController extends Controller
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
+        // dd($request->user());
         $request->user()->messages()->create($validated);
         return redirect(route('messages.index'));
     }

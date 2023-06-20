@@ -1,18 +1,22 @@
 {
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass:watch": "sass --source-map -w    resources/sass/style.scss resources/css/style.css",
-    "sass:debug": "sass --source-map       resources/sass/style.scss resources/css/style.css",
-    "sass:release": "sass --style=compressed resources/sass/style.scss resources/css/style.css",
-    "dev": "vite",
-    "build": "vite build"
-  },
-  "author": "interactive",
-  "license": "ISC",
-  "devDependencies": {
-    "sass": "^1.23.0",
-    "sass-loader": "^13.3.1"
-  }
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "sass:watch": "sass --source-map -w    resources/sass/style.scss resources/css/style.css",
+        "sass:debug": "sass --source-map       resources/sass/style.scss resources/css/style.css",
+        "sass:release": "sass --style=compressed resources/sass/style.scss resources/css/style.css",
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "author": "interactive",
+    "license": "ISC",
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.2",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.2",
+        "postcss": "^8.4.6",
+        "sass": "^1.23.0",
+        "sass-loader": "^13.3.1",
+        "tailwindcss": "^3.1.0"
+    }
 }
-
