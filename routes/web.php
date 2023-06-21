@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::resource('messages', MessageController::class)
-    ->only(['index', 'store', 'destroy']);
+    ->only(['index', 'store', 'destroy', 'edit', 'update']);
 
 //Added by Breeze
 Route::get('/dashboard', function () {

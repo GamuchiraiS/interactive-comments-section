@@ -72,7 +72,11 @@ class MessageController extends Controller
      */
     public function edit(Message $message)
     {
-        //
+        return view('messages.edit', [
+
+            'messages' => $message,
+
+        ]);
     }
 
     /**
@@ -84,7 +88,19 @@ class MessageController extends Controller
      */
     public function update(Request $request, Message $message)
     {
-        //
+        $validated = $request->validate([
+
+            'message' => 'required|string|max:255',
+
+        ]);
+
+
+
+        $message->update($validated);
+
+
+
+        return redirect(route('messages.index'));
     }
 
     /**
