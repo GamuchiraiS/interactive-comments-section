@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('message');
+            $table->integer('vote_count')->default(0);
             //$table->integer('user_id');
         });
     }
