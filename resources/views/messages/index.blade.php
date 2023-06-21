@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,41 +9,49 @@
 </head>
 
 <body>
-<main>
-    <div class="card">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum diam sed tellus iaculis.</p>
-    </div>
+    <main>
+        <div class="card">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum diam sed tellus iaculis.</p>
+        </div>
 
-    <div class="card">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum diam sed tellus iaculis.</p>
-    </div>
+        <div class="card">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum diam sed tellus iaculis.</p>
+        </div>
 
-    @php
+        @php
         $messages = App\Models\Message::all();
-    @endphp
+        @endphp
 
-{{--    <div class="card">--}}
-{{--        <p> {{ $messages }}</p>--}}
-{{--    </div>--}}
+        {{-- <div class="card">--}}
+        {{-- <p> {{ $messages }}</p>--}}
+        {{-- </div>--}}
 
-    @foreach ($messages as $message)
+        @foreach ($messages as $message)
         <div class="flex-1 card">
             <div class="flex justify-between items-center">
                 <div>
                     <span class="text-gray-800">{{ $message->user }}</span>
                     <small class="ml-2 text-sm text-gray-600">{{ $message->created_at->format('j M Y, g:i a') }}</small>
+                    <form method="POST" action="{{ route('messages.destroy', $message) }}">
+                        @csrf
+                        @method('delete')
+                        <x-dropdown-link :href="route('messages.destroy', $message)" onclick="event.preventDefault(); this.closest('form').submit();">
+                            {{ __('Delete') }}
+                        </x-dropdown-link>
+                    </form>
                 </div>
             </div>
             <p class="mt-4 text-lg text-gray-900">{{ $message->message }}</p>
         </div>
-    @endforeach
+        @endforeach
 
-    <form method="POST" action="{{ route('messages.store') }}">
-        @csrf
-        <textarea name="message" placeholder="Add a comment"></textarea>
-        <button type="submit">Send</button>
-    </form>
+        <form method="POST" action="{{ route('messages.store') }}">
+            @csrf
+            <textarea name="message" placeholder="Add a comment"></textarea>
+            <button type="submit">Send</button>
+        </form>
 
-</main>
+    </main>
 </body>
+
 </html>
