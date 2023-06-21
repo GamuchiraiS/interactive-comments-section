@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Message;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 
@@ -20,7 +21,8 @@ use App\Http\Controllers\MessageController;
 // });
 
 Route::get('/', function () {
-    return view('messages.index');
+    $messages = Message::all();
+    return view('messages.index', ['$messages' => $messages]);
 });
 
 Route::resource('messages', MessageController::class)

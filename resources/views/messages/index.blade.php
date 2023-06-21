@@ -18,14 +18,6 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum diam sed tellus iaculis.</p>
         </div>
 
-        @php
-        $messages = App\Models\Message::all();
-        @endphp
-
-        {{-- <div class="card">--}}
-        {{-- <p> {{ $messages }}</p>--}}
-        {{-- </div>--}}
-
         @foreach ($messages as $message)
         <div class="flex-1 card">
             <div class="flex justify-between items-center">
@@ -41,7 +33,15 @@
                     </form>
                     @unless ($message->created_at->eq($message->updated_at))
                         <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
-                        @endunless
+                    @endunless
+
+                    <form method="GET" action="{{ route('messages.edit', $message) }}">
+                        @csrf
+                        @method('edit')
+                        <x-dropdown-link :href="route('messages.edit', $message)" onclick="event.preventDefault(); this.closest('form').submit();">
+                            {{ __('Edit') }}
+                        </x-dropdown-link>
+                    </form>
                     <x-dropdown>
                         <!-- <x-slot name="trigger">
                             <button>
