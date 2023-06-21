@@ -17,13 +17,6 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum diam sed tellus iaculis.</p>
     </div>
 
-
-
-    <form method="POST" action="{{ route('messages.store') }}">
-        @csrf
-        <textarea name="message" placeholder="Add a comment"></textarea>
-        <button type="submit">Send</button>
-    </form>
     @php
         $messages = App\Models\Message::all();
     @endphp
@@ -33,7 +26,7 @@
 {{--    </div>--}}
 
     @foreach ($messages as $message)
-        <div class="flex-1">
+        <div class="flex-1 card">
             <div class="flex justify-between items-center">
                 <div>
                     <span class="text-gray-800">{{ $message->user }}</span>
@@ -43,6 +36,12 @@
             <p class="mt-4 text-lg text-gray-900">{{ $message->message }}</p>
         </div>
     @endforeach
+
+    <form method="POST" action="{{ route('messages.store') }}">
+        @csrf
+        <textarea name="message" placeholder="Add a comment"></textarea>
+        <button type="submit">Send</button>
+    </form>
 
 </main>
 </body>
