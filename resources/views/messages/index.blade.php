@@ -27,6 +27,13 @@
                             @unless ($message->created_at->eq($message->updated_at))
                                 <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                             @endunless
+
+                            <div>
+                                <span> Vote: {{$message->vote_count}}</span>
+                                <button>+</button>
+                                <button>-</button>
+                            </div>
+
                             <form method="POST" action="{{ route('messages.destroy', $message) }}">
                                 @csrf
                                 @method('delete')

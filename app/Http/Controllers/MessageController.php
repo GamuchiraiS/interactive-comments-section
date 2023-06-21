@@ -35,9 +35,9 @@ class MessageController extends Controller
         ]);
 
         Message::create([
-            'message'    => $request->message
+            'message'    => $request->message,
         ]);
-        //dd($request);
+
         //$request->user->messages()->created->($validated);
         return redirect('/');
     }
