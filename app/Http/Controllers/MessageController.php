@@ -6,7 +6,6 @@ use App\Models\Message;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 
 class MessageController extends Controller
 {
@@ -18,7 +17,8 @@ class MessageController extends Controller
     public function index()
     {
         //get messages
-        return view('messages.index');
+        $messages = Message::all();
+        return view('messages.index', ['messages' => $messages]);
     }
 
     /**
@@ -67,12 +67,12 @@ class MessageController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Contracts\View\Factory|View|\Illuminate\Http\Response
      */
     public function edit(Message $message)
     {
         return view('messages.edit', [
-            'messages' => $message,
+            'message' => $message,
         ]);
     }
 
@@ -81,29 +81,27 @@ class MessageController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Message $message)
     {
         $validated = $request->validate([
             'message' => 'required|string|max:255',
-
         ]);
 
         $message->update($validated);
-        return redirect(route('messages.index'));
+        return redirect('/');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Message $message)
     {
         $message->delete();
-
-        return redirect(route('messages.index'));
+        return redirect('/');
     }
 }
