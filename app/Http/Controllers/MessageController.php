@@ -104,4 +104,18 @@ class MessageController extends Controller
         $message->delete();
         return redirect('/');
     }
+
+    public function upVote(Message $message, Request $request, $id)
+    {
+       $message->increment('vote_count', +1);
+        return redirect()->back();
+    }
+
+    public function downVote(Message $message, Request $request, $id)
+    {
+        $message->decrement('vote_count', 1);
+        return redirect()->back();
+    }
 }
+
+

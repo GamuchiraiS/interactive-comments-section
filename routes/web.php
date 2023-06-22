@@ -25,7 +25,10 @@ Route::get('/', function () {
 });
 
 Route::resource('messages', MessageController::class)
-    ->only(['index', 'store', 'destroy', 'edit', 'update']);
+    ->only(['index', 'store', 'destroy', 'edit', 'update', 'upVote', 'downVote']);
+
+Route::put('/{vote}', [MessageController::class, 'upVote']);
+Route::put('/{vote}', [MessageController::class, 'downVote']);
 
 //Added by Breeze
 Route::get('/dashboard', function () {
