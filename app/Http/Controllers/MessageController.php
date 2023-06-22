@@ -105,15 +105,17 @@ class MessageController extends Controller
         return redirect('/');
     }
 
-    public function upVote(Message $message, Request $request, $id)
+    public function upVote(Message $message, $id)
     {
-        $message->increment('vote_count', 1);
+        $message->increment('vote_count');
         return redirect()->back();
     }
 
-    public function downVote(Message $message, Request $request, $id)
+    public function downVote(Message $message, $id)
     {
-        $message->decrement('vote_count', 1);
+        //dd($message);
+        $message->decrement('vote_count');
+        //dd($message);
         return redirect()->back();
     }
 }

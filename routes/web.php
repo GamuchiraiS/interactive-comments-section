@@ -27,8 +27,8 @@ Route::get('/', function () {
 Route::resource('messages', MessageController::class)
     ->only(['index', 'store', 'destroy', 'edit', 'update', 'upVote', 'downVote']);
 
-Route::put('/{vote}', [MessageController::class, 'upVote']);
-Route::put('/{vote}', [MessageController::class, 'downVote']);
+Route::post('/upVote/{id}', [MessageController::class, 'upVote'])->name('upVote');
+Route::post('/down/{id}', [MessageController::class, 'downVote'])->name('downVote');
 
 //Added by Breeze
 Route::get('/dashboard', function () {

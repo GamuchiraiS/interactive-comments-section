@@ -30,15 +30,17 @@
 
                     <div>
                         <span> Vote: {{$message->vote_count}}</span>
-                        <form method="post" action="{{ route('messages.index', $message) }}">
-                            @method('PUT')
+
+                        <form method="post" action="{{ route('upVote', $message->id) }}">
+{{--                            @method('PUT')--}}
                             @csrf
                             <input class="" name="submitbutton" value="Up Vote" type="submit">
                         </form>
 
-                        <form method="post" action="{{ route('messages.index', $message) }}">
-                            @method('PUT')
+                        <form method="post" action="{{ route('downVote', $message->id) }}">
+{{--                            @method('GET')--}}
                             @csrf
+
                             <input class="" name="submitbutton" value="Down Vote" type="submit">
                         </form>
                     </div>

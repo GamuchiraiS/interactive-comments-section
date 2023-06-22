@@ -11,6 +11,7 @@ class Message extends Model
 
     protected $fillable = [
         'message',
+        'vote_count'
     ];
 
     public function user()
