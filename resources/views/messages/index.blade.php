@@ -11,10 +11,6 @@
 <body>
     <main>
 
-        @php
-        $messages = App\Models\Message::all();
-        @endphp
-
         @if($messages->isNotEmpty())
         @foreach ($messages as $message)
         <div class="flex-1 card">

@@ -21,7 +21,8 @@ use App\Http\Controllers\MessageController;
 // });
 
 Route::get('/', function () {
-    return view('messages.index');
+    //return redirect('/', [ 'messages' => Message::all()]);
+    return view('messages.index', [ 'messages' => Message::all()]);
 });
 
 Route::resource('messages', MessageController::class)

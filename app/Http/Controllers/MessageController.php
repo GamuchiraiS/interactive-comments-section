@@ -18,7 +18,7 @@ class MessageController extends Controller
     {
         //get messages
         $messages = Message::all();
-        return view('messages.index', ['messages' => $messages]);
+        return view('messages.index');
     }
 
     /**
@@ -34,9 +34,15 @@ class MessageController extends Controller
             'message' => 'required|string|max:255',
         ]);
 
-        Message::create([
-            'message'    => $request->message,
-        ]);
+        $newMessage = new Message;
+        $newMessage->message = $request->message;
+        $newMessage->vote_count = 0;
+        $newMessage->save();
+
+//        Message::create([
+//            'message'    => $request->message,
+//            'vote_count'
+//        ]);
 
         //$request->user->messages()->created->($validated);
         return redirect('/');
@@ -105,18 +111,18 @@ class MessageController extends Controller
         return redirect('/');
     }
 
-    public function upVote(Message $message, $id)
+    public function upVote($id)
     {
-        $message->increment('vote_count');
-        return redirect()->back();
+        Message::find($id)->increment('vote_count');
+        return redirect('/');
+
     }
 
-    public function downVote(Message $message, $id)
+    public function downVote($id)
     {
+        Message::find($id)->decrement('vote_count');
         //dd($message);
-        $message->decrement('vote_count');
-        //dd($message);
-        return redirect()->back();
+        return redirect('/');
     }
 }
 
