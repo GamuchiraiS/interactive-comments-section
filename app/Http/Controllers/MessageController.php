@@ -107,7 +107,7 @@ class MessageController extends Controller
 
     public function upVote(Message $message, Request $request, $id)
     {
-       $message->increment('vote_count', +1);
+        $message->increment('vote_count', 1);
         return redirect()->back();
     }
 
